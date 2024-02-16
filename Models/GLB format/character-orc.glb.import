@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b70erqo85o4f6"
-path="res://.godot/imported/character-orc.glb-0334c879a678a8e47fbf6d2db8ac5d51.scn"
+uid="uid://cfblrjc86qmop"
+path="res://.godot/imported/character-orc.glb-ed2f03d419fd6f0b616371444d637d57.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/character-orc.glb"
-dest_files=["res://.godot/imported/character-orc.glb-0334c879a678a8e47fbf6d2db8ac5d51.scn"]
+source_file="res://models/GLB format/character-orc.glb"
+dest_files=["res://.godot/imported/character-orc.glb-ed2f03d419fd6f0b616371444d637d57.scn"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d151fwo16snm6"
-path="res://.godot/imported/wall-half.glb-386ff54aa32513fedea6914b5809ed07.scn"
+uid="uid://bs20t4nfqub25"
+path="res://.godot/imported/wall-half.glb-d4320c742ffa019b93daafc7f22fb4f7.scn"
 
 [deps]
 
-source_file="res://Models/GLB format/wall-half.glb"
-dest_files=["res://.godot/imported/wall-half.glb-386ff54aa32513fedea6914b5809ed07.scn"]
+source_file="res://models/GLB format/wall-half.glb"
+dest_files=["res://.godot/imported/wall-half.glb-d4320c742ffa019b93daafc7f22fb4f7.scn"]
 
 [params]
 

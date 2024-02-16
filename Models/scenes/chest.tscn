@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://biqoj07ogxgtb"]
+
+[ext_resource type="PackedScene" uid="uid://l1d73o1og50r" path="res://models/GLB format/chest.glb" id="1_b4wmq"]
+
+[node name="Chest" type="Node3D"]
+
+[node name="chest2" parent="." instance=ExtResource("1_b4wmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)

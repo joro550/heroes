@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://4ubqudrhdjm5"]
+
+[ext_resource type="PackedScene" uid="uid://cfblrjc86qmop" path="res://models/GLB format/character-orc.glb" id="1_qftfc"]
+
+[node name="Orc" type="Node3D"]
+
+[node name="character-orc2" parent="." instance=ExtResource("1_qftfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
