@@ -1,16 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgnpnh2ambb6"]
+[gd_scene load_steps=10 format=3 uid="uid://cgnpnh2ambb6"]
 
 [ext_resource type="Script" path="res://scripts/GameScreen.gd" id="1_n6jsp"]
 [ext_resource type="PackedScene" uid="uid://bk5muc1wemq6q" path="res://rooms/SafeRoom.tscn" id="1_uqsrs"]
-[ext_resource type="PackedScene" uid="uid://cf30xakcapv1j" path="res://hero2.tscn" id="2_c5a8v"]
+[ext_resource type="PackedScene" uid="uid://cf30xakcapv1j" path="res://character/hero2.tscn" id="2_c5a8v"]
 [ext_resource type="PackedScene" uid="uid://cu2p0gbibjq7f" path="res://rooms/BossRoom.tscn" id="4_vis2m"]
+[ext_resource type="PackedScene" uid="uid://cwitlwxr4n6a6" path="res://rooms/Room_1.tscn" id="6_kpw36"]
+[ext_resource type="PackedScene" uid="uid://bpkdt20pdcfk8" path="res://RoomManager.tscn" id="6_x6vq4"]
+[ext_resource type="Texture2D" uid="uid://ci5afftoheupl" path="res://assets/healthbarUnder.png" id="7_6knw5"]
+[ext_resource type="Texture2D" uid="uid://t25jtsa5mx03" path="res://assets/healthbarProgress.png" id="8_coh3u"]
 
-[node name="GameScreen" type="Node2D" node_paths=PackedStringArray("SafeRoom", "BossRoom", "CurrentHero", "Heros")]
+[sub_resource type="GDScript" id="GDScript_ken3t"]
+
+[node name="GameScreen" type="Node2D" node_paths=PackedStringArray("SafeRoom", "BossRoom", "RoomParent", "HeroParent")]
 script = ExtResource("1_n6jsp")
 SafeRoom = NodePath("Node/SafeRoom")
 BossRoom = NodePath("Node/BossRoom")
-CurrentHero = NodePath("Node/hero")
-Heros = [NodePath("Node/hero")]
+RoomParent = NodePath("Node/RoomParent")
+HeroParent = NodePath("Node/HeroParent")
+PotentialHeros = Array[PackedScene]([ExtResource("2_c5a8v")])
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -21,13 +28,13 @@ scale = Vector2(28.84, 14.08)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Play" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 16.8169
-offset_top = 35.0852
-offset_right = 57.8169
-offset_bottom = 66.0852
-scale = Vector2(0.140517, 0.185805)
+offset_left = 17.9958
+offset_top = 35.0142
+offset_right = 58.9958
+offset_bottom = 66.0142
+scale = Vector2(0.103069, 0.14035)
 text = "Play"
 
 [node name="Node" type="Node" parent="."]
@@ -38,8 +45,42 @@ position = Vector2(27, 208)
 [node name="BossRoom" parent="Node" instance=ExtResource("4_vis2m")]
 position = Vector2(949, 208)
 
-[node name="hero" parent="Node" node_paths=PackedStringArray("Room") instance=ExtResource("2_c5a8v")]
-position = Vector2(91, 298)
-Room = NodePath("../SafeRoom")
+[node name="RoomParent" type="Node2D" parent="Node"]
+position = Vector2(252, 210)
+script = SubResource("GDScript_ken3t")
 
-[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[node name="Room1" parent="Node/RoomParent" instance=ExtResource("6_x6vq4")]
+position = Vector2(0, -1)
+cost = 100
+room_to_spawn = ExtResource("6_kpw36")
+
+[node name="Room2" parent="Node/RoomParent" instance=ExtResource("6_x6vq4")]
+position = Vector2(239, -1)
+cost = 100
+room_to_spawn = ExtResource("6_kpw36")
+
+[node name="Room3" parent="Node/RoomParent" instance=ExtResource("6_x6vq4")]
+position = Vector2(470, -1)
+cost = 100
+room_to_spawn = ExtResource("6_kpw36")
+
+[node name="HeroParent" type="Node2D" parent="Node"]
+position = Vector2(109, 293)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 750.0
+offset_top = 6.0
+offset_right = 814.0
+offset_bottom = 46.0
+scale = Vector2(5.77637, 4.46078)
+value = 100.0
+texture_under = ExtResource("7_6knw5")
+texture_progress = ExtResource("8_coh3u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Control/Play" to="." method="_on_button_pressed"]

@@ -25,5 +25,4 @@ func get_next_room() -> Room:
 	return _nextRoom
 	
 func _on_exit_body_entered(body):
-	print("exit has been hit, _on_exit_body_entered")
 	_exit_reached.emit(self)

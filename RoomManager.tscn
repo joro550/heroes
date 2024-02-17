@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpkdt20pdcfk8"]
+
+[ext_resource type="PackedScene" uid="uid://olaah6vktu03" path="res://rooms/Placeholder_room.tscn" id="1_601ya"]
+[ext_resource type="Script" path="res://scripts/RoomManager.gd" id="1_ttnl2"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_ttnl2")
+
+[node name="Buy_Button" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 74.0
+offset_top = -45.0
+offset_right = 112.0
+offset_bottom = -14.0
+text = "Buy"
+
+[node name="PlaceholderRoom" parent="." instance=ExtResource("1_601ya")]
+position = Vector2(0, -1)
+
+[node name="Bought" type="Node2D" parent="."]
+visible = false
+
+[node name="Left_Button" type="Button" parent="Bought"]
+unique_name_in_owner = true
+offset_top = -45.0
+offset_right = 18.0
+offset_bottom = -14.0
+text = "<"
+
+[node name="Right_Button" type="Button" parent="Bought"]
+unique_name_in_owner = true
+offset_left = 172.0
+offset_top = -46.0
+offset_right = 190.0
+offset_bottom = -15.0
+text = ">"
+
+[node name="Upgrade_Button" type="Button" parent="Bought"]
+unique_name_in_owner = true
+offset_left = 57.0
+offset_top = -46.0
+offset_right = 132.0
+offset_bottom = -15.0
+text = "Upgrade"
