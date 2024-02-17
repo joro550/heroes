@@ -17,22 +17,24 @@ func take_damage(room: Room):
 func _on_button_pressed():
 	setup_rooms()
 	
-	var my_random_number = rng.randf_range(0, Heros.size())
-	Heros[my_random_number].set_active(true)
+	var rand = rng.randf_range(0, Heros.size())
+	Heros[rand].set_active(true)
+	CurrentHero = Heros[rand]
 	
 	
 func _on_room_exit_reached(room : Room):
 	var next_room = room.get_next_room()
-	var next_entrance = next_room.get_entrance().global_position
-	CurrentHero.move_to_position(next_entrance)
 	
+	# set the current hero to traverse the next room
+	CurrentHero.set_room(next_room)
 	room._exit_reached.disconnect(_on_room_exit_reached)
 	
 func setup_rooms():
+	print(Rooms.size())
 	# if no rooms are present then just jump straight to the boss room	
 	if Rooms.size() == 0:
-		SafeRoom._exit_reached.connect(_on_room_exit_reached)
 		SafeRoom.set_next_room(BossRoom)
+		SafeRoom._exit_reached.connect(_on_room_exit_reached)
 		print("setting next room to boss room")
 		return 
 		

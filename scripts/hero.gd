@@ -30,6 +30,7 @@ func set_active(value: bool):
 	IsActive = value
 
 func set_room(room:Room):
+	move_to_position(room.get_entrance().global_position)
 	Room = room
 
 func take_damage(damage : int):
