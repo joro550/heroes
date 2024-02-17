@@ -8,7 +8,7 @@ func _ready():
 	var exit = $Exit as Area2D
 	exit.body_entered.connect(_on_exit_body_entered)
 
-signal _exit_reached(room:Room)
+signal exit_reached(room:Room)
 
 var _nextRoom : Room
 
@@ -25,4 +25,4 @@ func get_next_room() -> Room:
 	return _nextRoom
 	
 func _on_exit_body_entered(body):
-	_exit_reached.emit(self)
+	exit_reached.emit(self)

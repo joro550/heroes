@@ -29,6 +29,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Play" type="Button" parent="Control"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 17.9958
 offset_top = 35.0142
