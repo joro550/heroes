@@ -5,7 +5,6 @@ class_name Player
 @export var Level : int = 1
 @export var Money : int = 100 
 
-
 @onready var level_text : RichTextLabel = %Level_Text as RichTextLabel
 @onready var money_text : RichTextLabel = %Money_Text as RichTextLabel
 
@@ -17,7 +16,7 @@ func _ready():
 	Health_bar = $HealthBar as HealthBar
 	Health_bar.init(Health)
 	
-func _update():
+func _process(delta):
 	level_text.text = str(Level)
 	money_text.text = str(Money)
 	

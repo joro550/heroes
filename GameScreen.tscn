@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgnpnh2ambb6"]
+[gd_scene load_steps=12 format=3 uid="uid://cgnpnh2ambb6"]
 
 [ext_resource type="Script" path="res://scripts/GameScreen.gd" id="1_n6jsp"]
 [ext_resource type="PackedScene" uid="uid://bk5muc1wemq6q" path="res://rooms/SafeRoom.tscn" id="1_uqsrs"]
-[ext_resource type="PackedScene" uid="uid://cf30xakcapv1j" path="res://character/hero2.tscn" id="2_c5a8v"]
+[ext_resource type="PackedScene" uid="uid://cf30xakcapv1j" path="res://character/Guy.tscn" id="2_c5a8v"]
+[ext_resource type="PackedScene" uid="uid://jgf8k8eiqxbr" path="res://character/Knight 2.tscn" id="3_p1wam"]
+[ext_resource type="PackedScene" uid="uid://cf1c83yyvjc7" path="res://character/Knight.tscn" id="4_2howa"]
 [ext_resource type="PackedScene" uid="uid://cu2p0gbibjq7f" path="res://rooms/BossRoom.tscn" id="4_vis2m"]
+[ext_resource type="PackedScene" uid="uid://c1ykbjck3csom" path="res://character/Wizard.tscn" id="5_dgdqj"]
 [ext_resource type="PackedScene" uid="uid://cwitlwxr4n6a6" path="res://rooms/Room_1.tscn" id="6_kpw36"]
 [ext_resource type="PackedScene" uid="uid://bpkdt20pdcfk8" path="res://RoomManager.tscn" id="6_x6vq4"]
-[ext_resource type="PackedScene" uid="uid://cbdyjdkjww1qs" path="res://Player.tscn" id="7_8w6p7"]
+[ext_resource type="PackedScene" uid="uid://c4utfmi0bl31v" path="res://Player.tscn" id="7_8w6p7"]
 
 [sub_resource type="GDScript" id="GDScript_ken3t"]
 
@@ -16,7 +19,7 @@ SafeRoom = NodePath("Node/SafeRoom")
 BossRoom = NodePath("Node/BossRoom")
 RoomParent = NodePath("Node/RoomParent")
 HeroParent = NodePath("Node/HeroParent")
-PotentialHeros = Array[PackedScene]([ExtResource("2_c5a8v")])
+PotentialHeros = Array[PackedScene]([ExtResource("2_c5a8v"), ExtResource("3_p1wam"), ExtResource("4_2howa"), ExtResource("5_dgdqj")])
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

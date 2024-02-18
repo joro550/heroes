@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbdyjdkjww1qs"]
+[gd_scene load_steps=6 format=3 uid="uid://c4utfmi0bl31v"]
 
 [ext_resource type="Texture2D" uid="uid://ci5afftoheupl" path="res://assets/healthbarUnder.png" id="1_p81sb"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_womvt"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/HealthBar.gd" id="3_qj5h0"]
 [ext_resource type="Texture2D" uid="uid://dx8h8sc7fy8mg" path="res://assets/coin.png" id="5_nrc4g"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Player" type="CanvasLayer"]
 script = ExtResource("1_womvt")
 Health = 5
 

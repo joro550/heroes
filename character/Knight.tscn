@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://cf1c83yyvjc7"]
+
+[ext_resource type="Script" path="res://scripts/hero.gd" id="1_ufdhy"]
+[ext_resource type="Texture2D" uid="uid://xmjgrjacpv0f" path="res://assets/tile_0096.png" id="2_uwfcg"]
+[ext_resource type="Texture2D" uid="uid://ci5afftoheupl" path="res://assets/healthbarUnder.png" id="3_8ar8o"]
+[ext_resource type="Texture2D" uid="uid://t25jtsa5mx03" path="res://assets/healthbarProgress.png" id="4_ahwwg"]
+[ext_resource type="Script" path="res://scripts/HealthBar.gd" id="5_ivhkx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6wjd8"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="Animation" id="Animation_xwbpw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8vdem"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.139626, 0.0, -0.139626, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_17v4p"]
+_data = {
+"RESET": SubResource("Animation_xwbpw"),
+"walk": SubResource("Animation_8vdem")
+}
+
+[node name="hero" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+wall_min_slide_angle = 0.0
+script = ExtResource("1_ufdhy")
+Health = 5
+Damage = 1
+Money = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uwfcg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6wjd8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_17v4p")
+}
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -18.0
+offset_top = -22.0
+offset_right = 46.0
+offset_bottom = 18.0
+scale = Vector2(0.594358, 0.901011)
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource("3_8ar8o")
+texture_progress = ExtResource("4_ahwwg")
+script = ExtResource("5_ivhkx")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 3
+avoidance_enabled = true
+radius = 2.0
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

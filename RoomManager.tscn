@@ -21,6 +21,14 @@ position = Vector2(0, -1)
 [node name="Bought" type="Node2D" parent="."]
 visible = false
 
+[node name="Cost_Text" type="RichTextLabel" parent="Bought"]
+unique_name_in_owner = true
+offset_left = 44.0
+offset_top = 232.0
+offset_right = 158.0
+offset_bottom = 262.0
+text = "Cost: 1"
+
 [node name="Left_Button" type="Button" parent="Bought"]
 unique_name_in_owner = true
 offset_top = -45.0
@@ -43,3 +51,11 @@ offset_top = -46.0
 offset_right = 132.0
 offset_bottom = -15.0
 text = "Upgrade"
+
+[node name="Level_Text" type="RichTextLabel" parent="Bought"]
+unique_name_in_owner = true
+offset_left = 44.0
+offset_top = 199.0
+offset_right = 158.0
+offset_bottom = 229.0
+text = "Level: 1"

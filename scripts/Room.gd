@@ -5,6 +5,7 @@ class_name Room
 @export var Entrance : Area2D
 @export var damage :int = 2
 @export var level : int = 1
+@export var cost: int = 100
 
 var _nextRoom : Room
 
@@ -37,4 +38,10 @@ func _on_exit_body_entered(body):
 	exit_reached.emit(self)
 	
 func player_hit_damage(body):
-	damage_dealt.emit(damage * level)
+	damage_dealt.emit(damage + level)
+	
+func get_level() -> int:
+	return level
+
+func add_level(value:int):
+	level += value

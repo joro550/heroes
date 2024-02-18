@@ -6,6 +6,7 @@ signal hero_death()
 @export var IsActive : bool
 @export var Health : int 
 @export var Damage: int
+@export var Money : int
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
@@ -33,14 +34,12 @@ func move_to_position(position : Vector2):
 func get_active():
 	return IsActive
 	
-func set_active(value: bool):
-	IsActive = value
-	if value:
-		health_bar = $HealthBar as HealthBar
-		health_bar.init(Health)
-		nav_agent.velocity_computed.connect(_nav_agent_velocity_computed)
-		
-		$AnimationPlayer.play(AnimationToPlay)
+func set_active(level : int):
+	IsActive = true
+	health_bar = $HealthBar as HealthBar
+	health_bar.init(Health + level)
+	nav_agent.velocity_computed.connect(_nav_agent_velocity_computed)
+	$AnimationPlayer.play(AnimationToPlay)
 
 func _nav_agent_velocity_computed(self_velocity):
 	velocity = self_velocity

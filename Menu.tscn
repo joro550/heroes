@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyl8l6p7v1ipm"]
+
+[ext_resource type="Script" path="res://Menu.gd" id="1_1gs5j"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_1gs5j")
+
+[node name="Main_Menu" type="Node2D" parent="."]
+
+[node name="Button" type="Button" parent="Main_Menu"]
+offset_left = 108.0
+offset_top = 170.0
+offset_right = 149.0
+offset_bottom = 201.0
+text = "Play"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main_Menu"]
+offset_left = 332.0
+offset_top = 65.0
+offset_right = 1108.0
+offset_bottom = 223.0
+text = "Stop the heros from killing the monter at the end of the dungeon by buying room that cause damage to the heros, each room will cause the heros damage but will cost a fee.
+
+How long can you survive?"
+
+[connection signal="pressed" from="Main_Menu/Button" to="." method="_on_button_pressed"]
