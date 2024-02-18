@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwitlwxr4n6a6"]
+[gd_scene load_steps=5 format=3 uid="uid://cwitlwxr4n6a6"]
 
 [ext_resource type="Script" path="res://scripts/Room.gd" id="1_0ck3o"]
 [ext_resource type="TileSet" uid="uid://b765qd3llv0d0" path="res://rooms/TileMap.tres" id="1_nqcng"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6y3y7"]
 size = Vector2(15, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lcqi"]
+size = Vector2(20, 144)
 
 [node name="Room1" type="Node2D" node_paths=PackedStringArray("Exit", "Entrance")]
 script = ExtResource("1_0ck3o")
@@ -31,3 +34,10 @@ position = Vector2(184, 95)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_6y3y7")
+
+[node name="Damage" type="Area2D" parent="."]
+position = Vector2(94, 85)
+
+[node name="Area" type="CollisionShape2D" parent="Damage"]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_8lcqi")

@@ -31,6 +31,9 @@ func _on_button_pressed():
 		room = room_to_spawn.instantiate() as Room
 		
 		add_child(room)
+		room.init()
+		
 		been_bought = true
 		$Bought.visible = true
+		$Buy_Button.visible = false
 

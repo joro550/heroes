@@ -10,12 +10,15 @@ var rng = RandomNumberGenerator.new()
 var Rooms : Array[Room]
 var CurrentHero : Hero
 var level : int = 1
+var player : Player
 
 func _ready():
 	BossRoom.exit_reached.connect(take_damage)
 	SafeRoom.exit_reached.connect(_on_room_exit_reached)
+	player = $Player as Player
 	
 func take_damage(room: Room):
+	player.take_damage(CurrentHero.get_damage())
 	handle_heroes_turn_complete()
 	
 func hero_died():
@@ -32,6 +35,9 @@ func _on_room_exit_reached(room : Room):
 	
 	# set the current hero to traverse the next room
 	CurrentHero.set_room(next_room)
+	
+func _room_damage_dealt(damage : int):
+	CurrentHero.take_damage(damage)
 	
 func handle_heroes_turn_complete():
 	HeroParent.remove_child(CurrentHero)
@@ -79,7 +85,6 @@ func setup_rooms():
 			
 		Rooms.append(new_room)
 			
-	
 	# if no rooms are present then just jump straight to the boss room	
 	if Rooms.size() == 0:
 		SafeRoom.set_next_room(BossRoom)
@@ -88,8 +93,13 @@ func setup_rooms():
 	var last_room = SafeRoom
 	for room in Rooms:
 		last_room.set_next_room(room)
+		
+		# Setup the singal handlers 
 		room.exit_reached.disconnect(_on_room_exit_reached)
 		room.exit_reached.connect(_on_room_exit_reached)
+		
+		room.damage_dealt.disconnect(_room_damage_dealt)
+		room.damage_dealt.connect(_room_damage_dealt)
 		last_room = room
 		
 	last_room.set_next_room(BossRoom)

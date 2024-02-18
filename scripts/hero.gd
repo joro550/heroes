@@ -5,13 +5,13 @@ signal hero_death()
 
 @export var Room : Room
 @export var IsActive : bool
-@export var Health : int
+@export var Health : int 
+@export var Damage: int
 
 const Speed = 100.0
 const AnimationToPlay = "walk"
 
-func _on_ready():
-	$AnimationPlayer.play(AnimationToPlay)
+var health_bar : HealthBar
 
 func _physics_process(delta):
 	if IsActive:
@@ -28,6 +28,11 @@ func get_active():
 	
 func set_active(value: bool):
 	IsActive = value
+	if value:
+		health_bar = $HealthBar as HealthBar
+		health_bar.init(Health)
+		
+		$AnimationPlayer.play(AnimationToPlay)
 
 func set_room(room:Room):
 	move_to_position(room.get_entrance().global_position)
@@ -36,8 +41,11 @@ func set_room(room:Room):
 func set_initial_room(room:Room):
 	Room = room
 
+func get_damage():
+	return Damage
+
 func take_damage(damage : int):
-	Health -= damage
-	if Health <= 0:
+	health_bar.add_health(-damage)
+	if health_bar.get_current_health() <= 0:
 		hero_death.emit()
 		

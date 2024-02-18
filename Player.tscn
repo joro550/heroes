@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbdyjdkjww1qs"]
+
+[ext_resource type="Texture2D" uid="uid://ci5afftoheupl" path="res://assets/healthbarUnder.png" id="1_p81sb"]
+[ext_resource type="Script" path="res://Player.gd" id="1_womvt"]
+[ext_resource type="Texture2D" uid="uid://t25jtsa5mx03" path="res://assets/healthbarProgress.png" id="2_uqvm0"]
+[ext_resource type="Script" path="res://scripts/HealthBar.gd" id="3_qj5h0"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_womvt")
+Health = 5
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = 750.0
+offset_top = 6.0
+offset_right = 814.0
+offset_bottom = 46.0
+scale = Vector2(5.77637, 4.46078)
+value = 100.0
+texture_under = ExtResource("1_p81sb")
+texture_progress = ExtResource("2_uqvm0")
+script = ExtResource("3_qj5h0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

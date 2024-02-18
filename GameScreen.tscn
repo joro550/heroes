@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgnpnh2ambb6"]
+[gd_scene load_steps=9 format=3 uid="uid://cgnpnh2ambb6"]
 
 [ext_resource type="Script" path="res://scripts/GameScreen.gd" id="1_n6jsp"]
 [ext_resource type="PackedScene" uid="uid://bk5muc1wemq6q" path="res://rooms/SafeRoom.tscn" id="1_uqsrs"]
@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cu2p0gbibjq7f" path="res://rooms/BossRoom.tscn" id="4_vis2m"]
 [ext_resource type="PackedScene" uid="uid://cwitlwxr4n6a6" path="res://rooms/Room_1.tscn" id="6_kpw36"]
 [ext_resource type="PackedScene" uid="uid://bpkdt20pdcfk8" path="res://RoomManager.tscn" id="6_x6vq4"]
-[ext_resource type="Texture2D" uid="uid://ci5afftoheupl" path="res://assets/healthbarUnder.png" id="7_6knw5"]
-[ext_resource type="Texture2D" uid="uid://t25jtsa5mx03" path="res://assets/healthbarProgress.png" id="8_coh3u"]
+[ext_resource type="PackedScene" uid="uid://cbdyjdkjww1qs" path="res://Player.tscn" id="7_8w6p7"]
 
 [sub_resource type="GDScript" id="GDScript_ken3t"]
 
@@ -68,20 +67,6 @@ room_to_spawn = ExtResource("6_kpw36")
 [node name="HeroParent" type="Node2D" parent="Node"]
 position = Vector2(109, 293)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 750.0
-offset_top = 6.0
-offset_right = 814.0
-offset_bottom = 46.0
-scale = Vector2(5.77637, 4.46078)
-value = 100.0
-texture_under = ExtResource("7_6knw5")
-texture_progress = ExtResource("8_coh3u")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Player" parent="." instance=ExtResource("7_8w6p7")]
 
 [connection signal="pressed" from="Control/Play" to="." method="_on_button_pressed"]
