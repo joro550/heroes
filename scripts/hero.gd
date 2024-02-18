@@ -18,9 +18,9 @@ func _physics_process(delta: float):
 	if IsActive:
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
 		var intended_velcocity = dir * Speed
-		nav_agent.set_velocity(intended_velcocity)
-		#velocity = dir * Speed
-		#move_and_slide()
+		#nav_agent.set_velocity(intended_velcocity)
+		velocity = dir * Speed
+		move_and_slide()
 		
 		#var exit_position = Room.get_exit().global_position
 		#var target_position = (exit_position - global_position).normalized()
