@@ -12,10 +12,13 @@ var Rooms : Array[Room]
 var CurrentHero : Hero
 var player : Player
 
+signal player_died()
+
 func _ready():
 	BossRoom.exit_reached.connect(take_damage)
 	SafeRoom.exit_reached.connect(_on_room_exit_reached)
 	player = $Player as Player
+	player.player_death.connect(_handle_death)
 	setup_room_managers()
 	
 func take_damage(room: Room):
@@ -31,6 +34,9 @@ func _on_button_pressed():
 	generate_heroes()
 	pick_next_hero()
 	%Play.visible = false
+
+func _handle_death():
+	player_died.emit()
 	
 func _on_room_exit_reached(room : Room):
 	var next_room = room.get_next_room()
