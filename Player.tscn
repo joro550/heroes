@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbdyjdkjww1qs"]
+[gd_scene load_steps=6 format=3 uid="uid://cbdyjdkjww1qs"]
 
 [ext_resource type="Texture2D" uid="uid://ci5afftoheupl" path="res://assets/healthbarUnder.png" id="1_p81sb"]
-[ext_resource type="Script" path="res://Player.gd" id="1_womvt"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_womvt"]
 [ext_resource type="Texture2D" uid="uid://t25jtsa5mx03" path="res://assets/healthbarProgress.png" id="2_uqvm0"]
 [ext_resource type="Script" path="res://scripts/HealthBar.gd" id="3_qj5h0"]
+[ext_resource type="Texture2D" uid="uid://dx8h8sc7fy8mg" path="res://assets/coin.png" id="5_nrc4g"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_womvt")
@@ -23,3 +24,36 @@ script = ExtResource("3_qj5h0")
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Money" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Money"]
+position = Vector2(182, 21)
+texture = ExtResource("5_nrc4g")
+
+[node name="Money_Text" type="RichTextLabel" parent="Money"]
+unique_name_in_owner = true
+offset_left = 30.0
+offset_top = 6.0
+offset_right = 98.0
+offset_bottom = 40.0
+text = "1000000"
+fit_content = true
+
+[node name="Level" type="Node" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Level"]
+offset_left = 356.0
+offset_top = 11.0
+offset_right = 482.0
+offset_bottom = 51.0
+text = "Level"
+
+[node name="Level_Text" type="RichTextLabel" parent="Level"]
+unique_name_in_owner = true
+offset_left = 437.0
+offset_top = 12.0
+offset_right = 550.0
+offset_bottom = 52.0
+text = "1"
+fit_content = true

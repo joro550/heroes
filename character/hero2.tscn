@@ -82,7 +82,10 @@ script = ExtResource("5_xsh7h")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 3
 avoidance_enabled = true
+radius = 2.0
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

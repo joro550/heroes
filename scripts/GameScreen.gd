@@ -9,7 +9,6 @@ var rng = RandomNumberGenerator.new()
 
 var Rooms : Array[Room]
 var CurrentHero : Hero
-var level : int = 1
 var player : Player
 
 func _ready():
@@ -46,7 +45,7 @@ func handle_heroes_turn_complete():
 		%Play.visible = true
 	
 func generate_heroes():
-	var heroes_to_spawn = rng.randi_range(1, level * 2)
+	var heroes_to_spawn = rng.randi_range(1, player.get_level() * 2)
 	
 	for i in heroes_to_spawn:
 		var rand = rng.randi_range(0, PotentialHeros.size() - 1)
@@ -60,7 +59,7 @@ func pick_next_hero() -> bool:
 	var children = HeroParent.get_children()
 	
 	if children.size() == 0:
-		level += 1
+		player.level_complete()
 		return false
 		
 	# pick the next hero to enter the dungeon
