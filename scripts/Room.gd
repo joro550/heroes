@@ -35,6 +35,7 @@ func get_next_room() -> Room:
 	return _nextRoom
 	
 func _on_exit_body_entered(body):
+	print("exit reached")
 	exit_reached.emit(self)
 	
 func player_hit_damage(body):

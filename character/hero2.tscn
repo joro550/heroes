@@ -49,6 +49,8 @@ _data = {
 }
 
 [node name="hero" type="CharacterBody2D"]
+collision_mask = 3
+wall_min_slide_angle = 0.0
 script = ExtResource("1_u0lhx")
 Health = 3
 Damage = 1
@@ -75,3 +77,10 @@ value = 3.0
 texture_under = ExtResource("3_hdwlx")
 texture_progress = ExtResource("4_onio3")
 script = ExtResource("5_xsh7h")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
