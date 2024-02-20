@@ -82,6 +82,8 @@ func pick_next_hero() -> bool:
 	return true
 	
 func setup_rooms():
+	Rooms.clear()
+	
 	# loop through the children
 	for node in RoomParent.get_children():
 		var manager = node as RoomManager
