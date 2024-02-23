@@ -13,20 +13,13 @@ signal hero_death()
 const Speed = 100.0
 const AnimationToPlay = "walk"
 
-var health_bar : HealthBar
+var _health_bar : HealthBar
 
 func _physics_process(delta: float):
 	if IsActive:
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
 		var intended_velcocity = dir * Speed
-		#nav_agent.set_velocity(intended_velcocity)
-		velocity = dir * Speed
-		move_and_slide()
-		
-		#var exit_position = Room.get_exit().global_position
-		#var target_position = (exit_position - global_position).normalized()
-		#velocity = target_position * Speed
-		#move_and_slide()
+		nav_agent.set_velocity(intended_velcocity)
 
 func move_to_position(position : Vector2):
 	global_position = position
@@ -36,8 +29,9 @@ func get_active():
 	
 func set_active(level : int):
 	IsActive = true
-	health_bar = $HealthBar as HealthBar
-	health_bar.init(Health + level)
+	_health_bar = $HealthBar as HealthBar
+	if _health_bar:
+		_health_bar.init(Health + level)
 	nav_agent.velocity_computed.connect(_nav_agent_velocity_computed)
 	$AnimationPlayer.play(AnimationToPlay)
 
@@ -52,11 +46,18 @@ func set_room(room:Room):
 func set_initial_room(room:Room):
 	nav_agent.target_position = room.get_exit().global_position
 
+func set_target(target:Node2D):
+	nav_agent.target_position = target.global_position
+	nav_agent.target_reached.connect(_target_reached)
+
 func get_damage():
 	return Damage
+	
+func _target_reached():
+	print("target reached")
 
 func take_damage(damage : int):
-	health_bar.add_health(-damage)
-	if health_bar.get_current_health() <= 0:
+	_health_bar.add_health(-damage)
+	if _health_bar.get_current_health() <= 0:
 		hero_death.emit()
 		

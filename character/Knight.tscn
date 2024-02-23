@@ -89,3 +89,4 @@ radius = 2.0
 autostart = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 12.38

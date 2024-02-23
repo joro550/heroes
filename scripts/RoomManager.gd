@@ -11,37 +11,37 @@ var been_bought : bool
 var can_buy : bool
 var room : Room
 
-var buy_button : Button
-var left_button : Button
-var right_button : Button
-var upgrade_button : Button
-var level_text:RichTextLabel
-var cost_text: RichTextLabel
+var _buy_button : Button
+var _left_button : Button
+var _right_button : Button
+var _upgrade_button : Button
+var _level_text:RichTextLabel
+var _cost_text: RichTextLabel
 
 func _ready():
-	buy_button = %Buy_Button as Button
-	left_button = %Left_Button as Button
-	right_button = %Right_Button as Button
-	upgrade_button = %Upgrade_Button as Button
-	level_text = %Level_Text
-	cost_text = %Cost_Text
+	_buy_button = %Buy_Button as Button
+	_left_button = %Left_Button as Button
+	_right_button = %Right_Button as Button
+	_upgrade_button = %Upgrade_Button as Button
+	_level_text = %Level_Text
+	_cost_text = %Cost_Text
 	
-	buy_button.pressed.connect(_on_button_pressed)
-	upgrade_button.pressed.connect(_on_upgraded_pressed)
+	_buy_button.pressed.connect(_on_button_pressed)
+	_upgrade_button.pressed.connect(_on_upgraded_pressed)
 
 func _process(delta):
 	if not been_bought and can_buy:
-		buy_button.visible = true
+		_buy_button.visible = true
 	elif not been_bought and not can_buy:
-		buy_button.visible = false
+		_buy_button.visible = false
 	elif been_bought and can_buy:
 		$Bought.visible = true
 	else:
 		$Bought.visible = false
 		
 	if been_bought:
-		level_text.text = "Level: " + str(room.get_level())
-		cost_text.text = "Cost: " + str(get_cost())
+		_level_text.text = "Level: " + str(room.get_level())
+		_cost_text.text = "Cost: " + str(get_cost())
 		
 	
 func get_room() -> Room:
