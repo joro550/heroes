@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk5muc1wemq6q"]
+[gd_scene load_steps=5 format=3 uid="uid://bk5muc1wemq6q"]
 
 [ext_resource type="Script" path="res://scripts/Room.gd" id="1_4tpnf"]
 [ext_resource type="TileSet" uid="uid://b765qd3llv0d0" path="res://rooms/TileMap.tres" id="2_lwxy6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6uyy"]
 size = Vector2(20, 23)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y5lvm"]
+vertices = PackedVector2Array(194, 54, 208, 52, 206, 64, 184, 143, 188, 194, 1, 188, -5, -6, 194, -10, 205, 128, 206, 144, 280, 64, 282, 130)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(3, 6, 7, 0), PackedInt32Array(8, 9, 3), PackedInt32Array(8, 3, 2, 10), PackedInt32Array(10, 11, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 205, -21, 204, 43, 222, 42, 219, 54, 290, 54, 293, 141, 216, 138, 218, 156, 195, 154, 200, 205, -8, 198)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Room" type="Node2D" node_paths=PackedStringArray("_exit")]
 script = ExtResource("1_4tpnf")
@@ -26,3 +32,6 @@ shape = SubResource("RectangleShape2D_e6uyy")
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(226, 105)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_y5lvm")

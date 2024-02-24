@@ -9,6 +9,7 @@ signal hero_death()
 @export var Money : int
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
+@onready var _avoidance := $Obstacle as NavigationObstacle2D
 
 const Speed = 100.0
 const AnimationToPlay = "walk"
@@ -17,9 +18,13 @@ var _health_bar : HealthBar
 
 func _physics_process(delta: float):
 	if IsActive:
-		var dir = to_local(nav_agent.get_next_path_position()).normalized()
+		var dir = position.direction_to(nav_agent.get_next_path_position())
 		var intended_velcocity = dir * Speed
 		nav_agent.set_velocity(intended_velcocity)
+		
+func _nav_agent_velocity_computed(self_velocity):
+	velocity = self_velocity
+	move_and_slide()
 
 func move_to_position(position : Vector2):
 	global_position = position
@@ -29,15 +34,13 @@ func get_active():
 	
 func set_active(level : int):
 	IsActive = true
+	_avoidance.avoidance_enabled = false
+	
 	_health_bar = $HealthBar as HealthBar
 	if _health_bar:
 		_health_bar.init(Health + level)
 	nav_agent.velocity_computed.connect(_nav_agent_velocity_computed)
 	$AnimationPlayer.play(AnimationToPlay)
-
-func _nav_agent_velocity_computed(self_velocity):
-	velocity = self_velocity
-	move_and_slide()
 
 func set_room(room:Room):
 	move_to_position(room.get_entrance().global_position)

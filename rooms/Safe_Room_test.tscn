@@ -22,6 +22,9 @@ position = Vector2(456, 269)
 zoom = Vector2(2.5, 2.5)
 
 [node name="hero" parent="." instance=ExtResource("3_xkygg")]
-position = Vector2(379, 257)
+position = Vector2(370, 257)
+
+[node name="hero2" parent="." instance=ExtResource("3_xkygg")]
+position = Vector2(400, 255)
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
