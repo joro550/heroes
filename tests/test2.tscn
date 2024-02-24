@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://brk4d0bxddmpn"]
+
+[ext_resource type="Script" path="res://tests/test2.gd" id="1_1xs8p"]
+[ext_resource type="PackedScene" uid="uid://dr45avjjh0r4n" path="res://tests/test.tscn" id="2_g47uj"]
+
+[node name="Test2" type="Node2D"]
+script = ExtResource("1_1xs8p")
+_scene = ExtResource("2_g47uj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 318)

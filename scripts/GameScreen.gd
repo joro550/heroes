@@ -21,11 +21,11 @@ func _ready():
 	
 func _take_damage(room: Room):
 	_player.take_damage(_current_hero.get_damage())
-	handle_heroes_turn_complete()
+	_handle_heroes_turn_complete()
 	
 func _hero_died():
 	_player.add_money(_current_hero.Money)
-	handle_heroes_turn_complete()
+	_handle_heroes_turn_complete()
 	
 func _on_button_pressed():
 	_setup_rooms()
@@ -45,7 +45,7 @@ func _on_room_exit_reached(room : Room):
 func _room_damage_dealt(damage : int):
 	_current_hero.take_damage(damage)
 	
-func handle_heroes_turn_complete():
+func _handle_heroes_turn_complete():
 	HeroParent.remove_child(_current_hero)
 	_current_hero.queue_free()
 	if not _pick_next_hero():
