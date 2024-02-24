@@ -2,10 +2,10 @@ extends Node2D
 class_name Room
 
 @export var _exit : Node2D
-@export var Entrance : Area2D
-@export var damage :int = 2
-@export var level : int = 1
-@export var cost: int = 100
+@export var _entrance : Area2D
+@export var _damage :int = 2
+@export var _level : int = 1
+@export var _cost: int = 100
 
 var _next_room : Room
 
@@ -26,7 +26,7 @@ func get_exit() -> Node2D:
 	return _exit
 	
 func get_entrance() -> Node2D:
-	return Entrance
+	return _entrance
 
 func set_next_room(room: Room):
 	_next_room = room
@@ -38,10 +38,13 @@ func _on_exit_body_entered(body: Node2D):
 	exit_reached.emit(self)
 	
 func player_hit_damage(body):
-	damage_dealt.emit(damage + level)
+	damage_dealt.emit(_damage + _level)
 	
 func get_level() -> int:
-	return level
+	return _level
 
 func add_level(value:int):
-	level += value
+	_level += value
+	
+func get_cost() -> int:
+	return _cost

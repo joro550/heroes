@@ -5,9 +5,6 @@ extends Node2D
 @onready var _hero : Hero = $hero
 @onready var _safe_room : Room = $Room
 
-
-
-
 func _on_button_pressed():
 	_hero.set_active(1)
 	_hero.set_initial_room(_safe_room)

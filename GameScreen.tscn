@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgnpnh2ambb6"]
+[gd_scene load_steps=10 format=3 uid="uid://cgnpnh2ambb6"]
 
 [ext_resource type="Script" path="res://scripts/GameScreen.gd" id="1_n6jsp"]
 [ext_resource type="PackedScene" uid="uid://bk5muc1wemq6q" path="res://rooms/SafeRoom.tscn" id="1_uqsrs"]
-[ext_resource type="PackedScene" uid="uid://cf30xakcapv1j" path="res://character/Guy.tscn" id="2_c5a8v"]
+[ext_resource type="PackedScene" uid="uid://cf30xakcapv1j" path="res://character/Guy.tscn" id="2_x6h2c"]
 [ext_resource type="PackedScene" uid="uid://cu2p0gbibjq7f" path="res://rooms/BossRoom.tscn" id="4_vis2m"]
 [ext_resource type="PackedScene" uid="uid://cwitlwxr4n6a6" path="res://rooms/Room_1.tscn" id="6_kpw36"]
 [ext_resource type="PackedScene" uid="uid://bpkdt20pdcfk8" path="res://RoomManager.tscn" id="6_x6vq4"]
 [ext_resource type="PackedScene" uid="uid://c4utfmi0bl31v" path="res://Player.tscn" id="7_8w6p7"]
+[ext_resource type="Script" path="res://Camera.gd" id="8_ds1wm"]
 
 [sub_resource type="GDScript" id="GDScript_ken3t"]
 
@@ -16,13 +17,15 @@ SafeRoom = NodePath("Node/SafeRoom")
 BossRoom = NodePath("Node/BossRoom")
 RoomParent = NodePath("Node/RoomParent")
 HeroParent = NodePath("Node/HeroParent")
-PotentialHeros = Array[PackedScene]([ExtResource("2_c5a8v")])
+PotentialHeros = Array[PackedScene]([ExtResource("2_x6h2c")])
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 47.0
+offset_bottom = 48.0
 scale = Vector2(28.84, 14.08)
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -67,6 +70,10 @@ room_to_spawn = ExtResource("6_kpw36")
 [node name="HeroParent" type="Node2D" parent="Node"]
 position = Vector2(109, 293)
 
-[node name="Player" parent="." instance=ExtResource("7_8w6p7")]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 324)
+script = ExtResource("8_ds1wm")
+
+[node name="Player" parent="Camera2D" instance=ExtResource("7_8w6p7")]
 
 [connection signal="pressed" from="Control/Play" to="." method="_on_button_pressed"]

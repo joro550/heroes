@@ -9,29 +9,28 @@ extends Node2D
 var rng = RandomNumberGenerator.new()
 
 var _current_hero : Hero
-var _player : Player
+@onready var _player : Player = $Camera2D/Player
 
 signal player_died()
 
 func _ready():
-	BossRoom.exit_reached.connect(take_damage)
+	BossRoom.exit_reached.connect(_take_damage)
 	SafeRoom.exit_reached.connect(_on_room_exit_reached)
-	_player = $Player as Player
 	_player.player_death.connect(_handle_death)
-	setup_room_managers()
+	_setup_room_managers()
 	
-func take_damage(room: Room):
+func _take_damage(room: Room):
 	_player.take_damage(_current_hero.get_damage())
 	handle_heroes_turn_complete()
 	
-func hero_died():
+func _hero_died():
 	_player.add_money(_current_hero.Money)
 	handle_heroes_turn_complete()
 	
 func _on_button_pressed():
-	setup_rooms()
-	generate_heroes()
-	pick_next_hero()
+	_setup_rooms()
+	_generate_heroes()
+	_pick_next_hero()
 	%Play.visible = false
 
 func _handle_death():
@@ -49,11 +48,11 @@ func _room_damage_dealt(damage : int):
 func handle_heroes_turn_complete():
 	HeroParent.remove_child(_current_hero)
 	_current_hero.queue_free()
-	if not pick_next_hero():
+	if not _pick_next_hero():
 		%Play.visible = true
 		_player.add_money(round_complete_prize * _player.get_level())
 	
-func generate_heroes():
+func _generate_heroes():
 	var heroes_to_spawn = rng.randi_range(1, _player.get_level() * 2)
 	
 	for i in heroes_to_spawn:
@@ -64,7 +63,7 @@ func generate_heroes():
 		HeroParent.add_child(hero)
 	
 		
-func pick_next_hero() -> bool:
+func _pick_next_hero() -> bool:
 	var children = HeroParent.get_children()
 	
 	if children.size() == 0:
@@ -77,10 +76,10 @@ func pick_next_hero() -> bool:
 	_current_hero = children[rand] as Hero
 	_current_hero.set_active(_player.get_level())
 	_current_hero.set_initial_room(SafeRoom)
-	_current_hero.hero_death.connect(hero_died)
+	_current_hero.hero_death.connect(_hero_died)
 	return true
 	
-func setup_rooms():
+func _setup_rooms():
 	var rooms : Array[Room] = []
 	
 	# loop through the children
@@ -117,19 +116,18 @@ func setup_rooms():
 	
 func _buy_room(manager : RoomManager):
 	var new_room = manager.get_room()
-	_player.add_money(-new_room.cost)
+	_player.add_money(-new_room.get_cost())
 	manager.room_bought.disconnect(_buy_room)
 	manager.room_upgraded.connect(_upgrade_room)
 	
 func _upgrade_room(cost:int):
 	_player.add_money(-cost)
 	
-func setup_room_managers():
+func _setup_room_managers():
 	# loop through the children
 	for node in RoomParent.get_children():
 		var manager = node as RoomManager
 		if not manager:
-			print("is not manager")
 			continue
 			
 		manager.set_can_buy(false)

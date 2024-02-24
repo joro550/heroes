@@ -46,6 +46,7 @@ _data = {
 }
 
 [node name="hero" type="CharacterBody2D"]
+collision_mask = 2
 wall_min_slide_angle = 0.0
 script = ExtResource("1_vu2ne")
 Health = 3
@@ -64,9 +65,5 @@ libraries = {
 }
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
 radius = 7.0
 debug_enabled = true
-
-[node name="Obstacle" type="NavigationObstacle2D" parent="."]
-radius = 11.91

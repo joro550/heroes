@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu2p0gbibjq7f"]
+[gd_scene load_steps=7 format=3 uid="uid://cu2p0gbibjq7f"]
 
 [ext_resource type="TileSet" uid="uid://b765qd3llv0d0" path="res://rooms/TileMap.tres" id="1_uvdbi"]
 [ext_resource type="Script" path="res://scripts/Room.gd" id="1_xpa8w"]
@@ -10,10 +10,16 @@ size = Vector2(42, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kp407"]
 size = Vector2(14, 27)
 
-[node name="BossRoom" type="Node2D" node_paths=PackedStringArray("Exit", "Entrance")]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_favjm"]
+vertices = PackedVector2Array(18, 106, -30, 106, -29, 85, 11, 85, 174, 184, 17, 184, 174, 11, 11, 12)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 6), PackedInt32Array(7, 6, 0, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2, 3, 184, 1, 185, 195, 7, 194, 8, 116, -40, 116, -39, 76, 1, 75)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="BossRoom" type="Node2D" node_paths=PackedStringArray("_exit", "_entrance")]
 script = ExtResource("1_xpa8w")
-Exit = NodePath("Exit")
-Entrance = NodePath("Entrance")
+_exit = NodePath("Node2D")
+_entrance = NodePath("Entrance")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_uvdbi")
@@ -39,3 +45,9 @@ position = Vector2(10, 95)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance"]
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_kp407")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(88, 206)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_favjm")

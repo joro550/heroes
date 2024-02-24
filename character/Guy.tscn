@@ -49,6 +49,7 @@ _data = {
 }
 
 [node name="hero" type="CharacterBody2D"]
+collision_mask = 2
 wall_min_slide_angle = 0.0
 script = ExtResource("1_u0lhx")
 Health = 3
@@ -85,6 +86,6 @@ radius = 11.52
 avoidance_layers = 2
 avoidance_mask = 2
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+[node name="Obstacle" type="NavigationObstacle2D" parent="."]
 radius = 10.0
 avoidance_layers = 2

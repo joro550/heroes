@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwitlwxr4n6a6"]
+[gd_scene load_steps=6 format=3 uid="uid://cwitlwxr4n6a6"]
 
 [ext_resource type="Script" path="res://scripts/Room.gd" id="1_0ck3o"]
 [ext_resource type="TileSet" uid="uid://b765qd3llv0d0" path="res://rooms/TileMap.tres" id="1_nqcng"]
@@ -9,10 +9,16 @@ size = Vector2(15, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8lcqi"]
 size = Vector2(20, 144)
 
-[node name="Room1" type="Node2D" node_paths=PackedStringArray("Exit", "Entrance")]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_w13sn"]
+vertices = PackedVector2Array(14, 111, -10, 111, -8, 81, 16, 81, 175, 108, 177, 68, 192, 69, 192, 109, 176, 181, 13, 180, 16, 11, 177, 10)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 4, 3), PackedInt32Array(4, 8, 9, 0), PackedInt32Array(5, 3, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(7, 2, 187, 0, 187, 59, 202, 60, 202, 120, 185, 119, 187, 192, 3, 190, 4, 121, -21, 121, -18, 72, 6, 71)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="Room1" type="Node2D" node_paths=PackedStringArray("_exit", "_entrance")]
 script = ExtResource("1_0ck3o")
-Exit = NodePath("Exit")
-Entrance = NodePath("Entrance")
+_exit = NodePath("Node2D")
+_entrance = NodePath("Entrance")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_nqcng")
@@ -41,3 +47,9 @@ position = Vector2(94, 85)
 [node name="Area" type="CollisionShape2D" parent="Damage"]
 position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_8lcqi")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_w13sn")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(213, 93)

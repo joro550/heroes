@@ -18,9 +18,14 @@ var _health_bar : HealthBar
 
 func _physics_process(delta: float):
 	if IsActive:
-		var dir = position.direction_to(nav_agent.get_next_path_position())
+		var next_position = nav_agent.get_next_path_position() - global_position
+		var dir = next_position.normalized()
 		var intended_velcocity = dir * Speed
-		nav_agent.set_velocity(intended_velcocity)
+		
+		if nav_agent.avoidance_enabled:
+			nav_agent.set_velocity(intended_velcocity)
+		else:
+			_nav_agent_velocity_computed(intended_velcocity)
 		
 func _nav_agent_velocity_computed(self_velocity):
 	velocity = self_velocity
