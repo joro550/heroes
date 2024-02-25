@@ -15,8 +15,10 @@ position = Vector2(-86, -98)
 position = Vector2(36, -29)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("_clamp_x_min", "_clamp_x_max")]
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
 script = ExtResource("4_cwqcd")
+_max_zoom = 4
+_min_zoom = 2
 _clamp_x_min = NodePath("../Confines/Left")
 _clamp_x_max = NodePath("../Confines/Right")
 
