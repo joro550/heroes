@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dttqqi6tu3kyt"]
 
-[ext_resource type="Script" path="res://GameOver.gd" id="1_nj65f"]
+[ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_nj65f"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7gtlq"]
 

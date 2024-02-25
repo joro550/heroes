@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0eepu870y0ui"]
+
+[ext_resource type="Texture2D" uid="uid://bdgdggf7pnn8f" path="res://assets/tile_0121.png" id="1_emdhf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlk5h"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_emdhf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_tlk5h")

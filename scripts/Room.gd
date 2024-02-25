@@ -7,6 +7,8 @@ class_name Room
 @export var _level : int = 1
 @export var _cost: int = 100
 
+@onready var _tile_map : TileMap = $TileMap
+
 var _next_room : Room
 
 signal exit_reached(room:Room)
@@ -48,3 +50,6 @@ func add_level(value:int):
 	
 func get_cost() -> int:
 	return _cost
+	
+func get_tilemap() -> TileMap:
+	return _tile_map

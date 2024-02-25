@@ -6,7 +6,6 @@ var dictionary : Dictionary = {}
 @onready var _camera : Camera2D = $Camera2D
 
 func _ready():
-	
 	for n in 5:
 		var vector = Vector2(n, 0)
 		

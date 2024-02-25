@@ -9,7 +9,6 @@ signal hero_death()
 @export var Money : int
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
-@onready var _avoidance := $Obstacle as NavigationObstacle2D
 
 const Speed = 100.0
 const AnimationToPlay = "walk"
@@ -39,7 +38,6 @@ func get_active():
 	
 func set_active(level : int):
 	IsActive = true
-	_avoidance.avoidance_enabled = false
 	
 	_health_bar = $HealthBar as HealthBar
 	if _health_bar:

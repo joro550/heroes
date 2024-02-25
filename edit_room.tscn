@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b44svk11kil2u"]
+
+[ext_resource type="Script" path="res://edit_room.gd" id="1_7ndm2"]
+[ext_resource type="PackedScene" uid="uid://cwitlwxr4n6a6" path="res://rooms/Room_1.tscn" id="1_y3wkb"]
+[ext_resource type="PackedScene" uid="uid://b0eepu870y0ui" path="res://enemies/Ghost.tscn" id="3_w1b6d"]
+[ext_resource type="Script" path="res://Camera.gd" id="4_cwqcd"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_7ndm2")
+
+[node name="Room1" parent="." instance=ExtResource("1_y3wkb")]
+position = Vector2(-86, -98)
+
+[node name="Enemy" parent="." instance=ExtResource("3_w1b6d")]
+position = Vector2(36, -29)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("_clamp_x_min", "_clamp_x_max")]
+zoom = Vector2(4, 4)
+script = ExtResource("4_cwqcd")
+_clamp_x_min = NodePath("../Confines/Left")
+_clamp_x_max = NodePath("../Confines/Right")
+
+[node name="Confines" type="Node" parent="."]
+
+[node name="Left" type="Node2D" parent="Confines"]
+position = Vector2(-237, -6)
+scale = Vector2(2.3262, 0.00709274)
+
+[node name="Right" type="Node2D" parent="Confines"]
+position = Vector2(232, 4)
+scale = Vector2(2.3262, 0.00709274)

@@ -81,11 +81,4 @@ script = ExtResource("5_xsh7h")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 3
-avoidance_enabled = true
 radius = 11.52
-avoidance_layers = 2
-avoidance_mask = 2
-
-[node name="Obstacle" type="NavigationObstacle2D" parent="."]
-radius = 10.0
-avoidance_layers = 2

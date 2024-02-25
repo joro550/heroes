@@ -1,4 +1,5 @@
 extends Node2D
+
 @export var SafeRoom : Room
 @export var BossRoom : Room
 @export var RoomParent : Node2D
