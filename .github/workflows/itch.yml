@@ -3,6 +3,7 @@ on: push
 
 env:
   GODOT_VERSION: 4.2.1
+  PROJECT_PATH: heroes
   EXPORT_NAME: heroes
 
 jobs:
@@ -23,6 +24,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
+          cd $PROJECT_PATH
           godot --headless --verbose --export-release "HTML5" ../build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
